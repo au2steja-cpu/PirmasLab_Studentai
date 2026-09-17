@@ -5,40 +5,24 @@
 #include <algorithm>
 #include <fstream>
 #include <sstream>
-#include <cstdlib>
-#include <ctime>
 #include <limits>
 
 using namespace std;
 
 struct Studentas {
-	string vardas;
 	string pavarde;
-	vector<int> nd;
+	string vardas;
+	vector<int> nd_rezultatai;
 	int egz;
-	double galutinisVid = 0.0;
-	double galutineMed = 0.0;
+	double galutinis_vid;
 };
 
-int main() {
-	vector<Studentas> studentai;
-	int pasirinkimas;
-
-	while (true) {
-		cout << " Meniu" << endl;
-		cout << " Ivesti studentus rankiniu budu" << endl;
-		cout << " Generuoti studentus atsitiktinai" << endl;
-		cout << " Spausdinti rezultatus" << endl;
-		cout << " Issaugoti rezultatus i faila" << endl;
-		cout << " Baigti darba" << endl;
-		cout << " Pasirinkti veiksma: " << endl;
-		cin >> pasirinkimas;
-
-		if (pasirinkimas == 0) {
-			cout << "Programa baigia darba";
-			return 0;
-		}
+double skaiciutiVidurki(const vector<int>& nd, int egz) {
+	if (nd.empty()) return egz * 0.6;
+	double sum = 0;
+	for (int pazymys : nd) {
+		sum += pazymys;
 	}
-
-	return 0;
-} 
+	double vidurkis = sum / nd.size();
+	return (vidurkis * 0.4) + (egz * 0.6);
+}
