@@ -25,13 +25,13 @@ int main() {
 	int pasirinkimas;
 
 	while (true) {
-		cout << " Meniu";
-		cout << " Ivesti studentus rankiniu budu";
-		cout << " Generuoti studentus atsitiktinai";
-		cout << " Spausdinti rezultatus";
-		cout << " Issaugoti rezultatus i faila";
-		cout << " Baigti darba";
-		cout << " Pasirinkti veiksma: ";
+		cout << " Meniu" << endl;
+		cout << " Ivesti studentus rankiniu budu" << endl;
+		cout << " Generuoti studentus atsitiktinai" << endl;
+		cout << " Spausdinti rezultatus" << endl;
+		cout << " Issaugoti rezultatus i faila" << endl;
+		cout << " Baigti darba" << endl;
+		cout << " Pasirinkti veiksma: " << endl;
 		cin >> pasirinkimas;
 
 		if (pasirinkimas == 0) {
