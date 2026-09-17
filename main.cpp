@@ -40,3 +40,28 @@ double skaiciuotiMediana(vector<int> nd, int egz) {
 	}
 	return (mediana * 0.4) + (egz * 0.6);
 }
+
+bool palygintiStudentus(const Studentas& a, const Studentas& b) {
+	if (a.vardas == b.vardas) {
+		return a.pavarde < b.pavarde;
+	}
+	return a.vardas < b.vardas;
+}
+
+void spausdintiStudentus(const vector<Studentas>& studentai, bool rodytiVid, bool rodytiMed) {
+	cout << left << setw(15) << "Pavarde"
+		<< setw(15) << "Vardas";
+	if (rodytiVid) cout << setw(15) << "Galutinis(Vid)";
+	if (rodytiMed) cout << setw(15) << "Galutinis(Med)";
+	cout << endl;
+
+	cout << string(60, '-') << endl;
+
+	for (const auto& s : studentai) {
+		cout << left << setw(15) << s.pavarde
+			<< setw(15) << s.vardas;
+		if (rodytiVid) cout << setw(15) << fixed << setprecision(2) << s.galutinis_vid;
+		if (rodytiMed) cout << setw(15) << fixed << setprecision(2) << s.galutine_med;
+		cout << endl;
+	}
+}
