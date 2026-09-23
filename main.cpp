@@ -65,3 +65,30 @@ void spausdintiStudentus(const vector<Studentas>& studentai, bool rodytiVid, boo
 		cout << endl;
 	}
 }
+
+vector<Studentas> skaitytiIsFailo(const string& studentai10000.txt) {
+	vector<Studentas> studentai;
+	ifstream failas(studentai10000.txt);
+
+	if (!failas.is_open()) {
+		cout << "Nepavyko atidaryti failo: " << studentai10000 << endl;
+		return studentai;
+	}
+
+	string eilute;
+	getline(failas, eilute);
+
+	while (getline(failas, eilute)) {
+		if (eilute.empty()) continue;
+
+		stringstream ss(eilute);
+		Studentas s;
+		ss >> s.pavarde >> s.vardas;
+
+		int pazymys;
+		vector <int> visi_pazymiai;
+		while (ss >> pazymys) {
+			visi_pazymiai.push_back(pazymys);
+		}
+	}
+}
