@@ -90,5 +90,23 @@ vector<Studentas> skaitytiIsFailo(const string& studentai10000.txt) {
 		while (ss >> pazymys) {
 			visi_pazymiai.push_back(pazymys);
 		}
+
+		if (!visi_pazymiai.empty()) {
+			s.egz = visi_pazymiai.back();
+			visi_pazymiai.pop_back();
+			s.nd_rezultatai = visi_pazymiai;
+		}
+		else {
+			s.egz = 0;
+		}
+
+		s.galutinis_vid = skaiciuotiVidurki(s.nd_rezultatai, s.egz);
+		s.galutine_med = skaiciuotiMediana(s.nd_rezultatai, s.egz);
+
+		studentai.push_back(s);
 	}
+
+	failas.close();
+	return studentai;
 }
+
