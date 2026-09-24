@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="PirmasLab_Studentai.vcxproj" />
+  <Project Path="PirmasLab_Studentai.vcxproj" Id="7524d88a-776b-48a5-ad88-8fba0ecb26c3" />
 </Solution>
