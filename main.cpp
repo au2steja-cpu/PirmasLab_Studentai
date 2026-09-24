@@ -18,7 +18,7 @@ struct Studentas {
 	double galutine_med;
 };
 
-double skaiciutiVidurki(const vector<int>& nd, int egz) {
+double skaiciuotiVidurki(const vector<int>& nd, int egz) {
 	if (nd.empty()) return egz * 0.6;
 	double sum = 0;
 	for (int pazymys : nd) {
@@ -66,9 +66,9 @@ void spausdintiStudentus(const vector<Studentas>& studentai, bool rodytiVid, boo
 	}
 }
 
-vector<Studentas> skaitytiIsFailo(const string& studentai10000.txt) {
+vector<Studentas> skaitytiIsFailo(const string& studentai10000) {
 	vector<Studentas> studentai;
-	ifstream failas(studentai10000.txt);
+	ifstream failas(studentai10000);
 
 	if (!failas.is_open()) {
 		cout << "Nepavyko atidaryti failo: " << studentai10000 << endl;
@@ -110,3 +110,65 @@ vector<Studentas> skaitytiIsFailo(const string& studentai10000.txt) {
 	return studentai;
 }
 
+int main() {
+	vector<Studentas> studentai;
+	int pasirinkimas;
+
+	do {
+		cout << " --- Meniu ---" << endl;
+		cout << " 1. Ivesti duomenis rankiniu budu" << endl;
+		cout << " 2. Nuskaityti duomenis is failo" << endl;
+		cout << " 3. Spausdinti rezultatus (vid.)" << endl;
+		cout << " 4. Spausdinti rezultatus (med.)" << endl;
+		cout << " 5. Spausdinti abu" << endl;
+		cout << " 0. Baigti darba" << endl;
+		cin >> pasirinkimas;
+
+		if (pasirinkimas == 1) {
+			studentai.clear();
+			int studentuSkaicius;
+			cout << "Kiek studentu noresite ivesti? ";
+			cin >> studentuSkaicius;
+
+			for (int i = 0; i < studentuSkaicius; i++) {
+				Studentas s;
+				cout << "---" << i + 1 << "studentas ---" << endl;
+				cout << "Iveskite pavarde: "; cin >> s.pavarde;
+				cout << "Iveskite varda: "; cin >> s.vardas;
+
+				cout << "Iveskite namu darbu rezultatus (iveskite -1, kad baigtumete): " << endl;
+
+				int nd_pazymys;
+				while (cin >> nd_pazymys && nd_pazymys != -1) {
+					s.nd_rezultatai.push_back(nd_pazymys);
+				}
+
+				cout << "Iveskite egzamino rezultata: "; cin >> s.egz;
+
+				s.galutinis_vid = skaiciuotiVidurki(s.nd_rezultatai, s.egz);
+				s.galutine_med = skaiciuotiMediana(s.nd_rezultatai, s.egz);
+
+				studentai.push_back(s);
+			}
+		}
+		else if (pasirinkimas == 2) {
+			studentai = skaitytiIsFailo("studentai10000.txt");
+			if (!studentai.empty()) {
+				cout << "Duomenys sekmingai nuskaityti" << endl;
+			}
+		}
+		else if (pasirinkimas >= 3 && pasirinkimas <= 5) {
+			if (studentai.empty()) {
+				cout << "Nera duomenu. Padarykite 1 arba 2 punkta" << endl;
+			}
+			else {
+				sort(studentai.begin(), studentai.end(), palygintiStudentus);
+				if (pasirinkimas == 3) spausdintiStudentus(studentai, true, false);
+				else if (pasirinkimas == 4) spausdintiStudentus(studentai, false, true);
+				else spausdintiStudentus(studentai, true, true);
+			}
+		}
+	} while (pasirinkimas != 0);
+	cout << "Programa baigta" << endl;
+	return 0;
+}
